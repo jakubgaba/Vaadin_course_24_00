@@ -41,6 +41,7 @@ public class ApplicationLayout extends VerticalLayout {
 		layout.setHeight("100%");
 		layout.getStyle().set("flex-grow", "1");
 		layout.setClassName("layout");
+		layout.getStyle().set("overflow-y", "hidden");
 		createTextLayout();
 
 		final Div footer = new Div();
@@ -64,13 +65,17 @@ public class ApplicationLayout extends VerticalLayout {
 		
 
 		final Div content = new Div();
-		content.setClassName("content");
-		content.setText("This is the content area");
-		content.setHeightFull();
-		content.getStyle().set("display", "flex");
 		content.setWidth("75%");
-		content.getStyle().set("alignContent", "start");
+		content.setHeightFull();
+		content.setClassName("content");
+		content.getStyle().set("display", "flex");
+		content.getStyle().set("flex-wrap", "wrap");   // To stop the children elements to shrinking, instead of it will put them on a new line
+		content.getStyle().set("overflow-y", "auto");
 		
+		content.getStyle().set("alignContent", "start");
+		for (int i = 0; i < 60; i++) {
+			content.add(createBlock());
+		}
 		layout.add(navigation, content);
 		layout.expand(content);            //Hard to explain it just fills the content
 		layout.setDefaultVerticalComponentAlignment(Alignment.STRETCH);

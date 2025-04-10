@@ -9,6 +9,7 @@
 
 .content {
     background-color: #00ff00;
+    
 }
 
 .footer {
@@ -16,6 +17,6 @@
     color: #ffffff;
 }
 .layout {
-    /* display: flex; */
+    flex-wrap: wrap;
    
 }
