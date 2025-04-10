@@ -10,6 +10,8 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.training.layouting.exercises.MainLayout;
 
+
+
 @Route(value = ApplicationLayout.ROUTE, layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 public class ApplicationLayout extends VerticalLayout {
@@ -19,7 +21,7 @@ public class ApplicationLayout extends VerticalLayout {
 
 	public static final String ROUTE = "ex1";
 	public static final String TITLE = "Exercise 1";
-
+	public HorizontalLayout layout;
 	public ApplicationLayout() {
 		setSizeFull();
 		setPadding(false);
@@ -33,30 +35,14 @@ public class ApplicationLayout extends VerticalLayout {
 		header.setWidthFull();
 		header.setClassName("header");
 
-		HorizontalLayout layout = new HorizontalLayout();
+		layout = new HorizontalLayout();
+		layout.setSpacing(false);
 		layout.setWidth("100%");
 		layout.setHeight("100%");
-		layout.setPadding(false);
-		layout.setSpacing(false);
+		layout.getStyle().set("flex-grow", "1");
 		layout.setClassName("layout");
+		createTextLayout();
 
-		final Div navigation = new Div();
-		navigation.setClassName("navigation");
-		navigation.setText("This is the navigation area. My width is 25% of the ApplicationLayout.");
-		navigation.setWidth("25%");
-		
-
-		final Div content = new Div();
-		content.setClassName("content");
-		content.setText("This is the content area");
-		content.setWidth("75%");
-
-		layout.setFlexGrow(1, content);
-		layout.setFlexGrow(0, navigation);
-		layout.setSpacing(false);
-
-		layout.add(navigation,content);
-		
 		final Div footer = new Div();
 		footer.setText("This is the footer area. My height is 100 pixels");
 		footer.setHeight("100px");
@@ -65,8 +51,31 @@ public class ApplicationLayout extends VerticalLayout {
 		footer.setClassName("footer");
 
 		add(header, layout, footer);
-	}
+ 
+		expand(layout);        //Just sets flex grow for all on 1, Hard to explain it just fills the content
+	}  
 
+	private void createTextLayout(){
+		final Div navigation = new Div();
+		navigation.setClassName("navigation");
+		navigation.setText("This is the navigation area. My width is 25% of the ApplicationLayout.");
+		navigation.setWidth("25%");
+		navigation.getStyle().set("flex-shrink", "0");
+		
+
+		final Div content = new Div();
+		content.setClassName("content");
+		content.setText("This is the content area");
+		content.setHeightFull();
+		content.getStyle().set("display", "flex");
+		content.setWidth("75%");
+		content.getStyle().set("alignContent", "start");
+		
+		layout.add(navigation, content);
+		layout.expand(content);            //Hard to explain it just fills the content
+		layout.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
+	
+	}
 	/**
 	 * Ignore this method for now.
 	 *
