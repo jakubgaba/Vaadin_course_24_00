@@ -39,6 +39,7 @@ public class ApplicationLayout extends VerticalLayout {
 		layout.setPadding(false);
 		layout.setSpacing(false);
 		layout.setClassName("layout");
+		layout.getStyle().set("overflow-y", "hidden");
 
 		final Div navigation = new Div();
 		navigation.setClassName("navigation");
@@ -48,13 +49,15 @@ public class ApplicationLayout extends VerticalLayout {
 
 		final Div content = new Div();
 		content.setClassName("content");
-		content.setText("This is the content area");
+		content.getStyle().set("display","flex");
+		content.getStyle().set("flex-wrap","wrap");
 		content.setWidth("75%");
-
+		for(int i=0;i < 60; i++){
+			content.add(createBlock());
+		}
+		content.getStyle().set("overflow-y", "auto");
 		layout.setFlexGrow(1, content);
 		layout.setFlexGrow(0, navigation);
-		layout.setSpacing(false);
-
 		layout.add(navigation,content);
 		
 		final Div footer = new Div();
