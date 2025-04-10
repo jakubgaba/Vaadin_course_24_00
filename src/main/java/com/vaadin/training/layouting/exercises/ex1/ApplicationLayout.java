@@ -41,7 +41,7 @@ public class ApplicationLayout extends VerticalLayout {
 		layout.setHeight("100%");
 		layout.getStyle().set("flex-grow", "1");
 		layout.setClassName("layout");
-		layout.getStyle().set("overflow-y", "hidden");
+		layout.getStyle().set("overflow-y", "hidden");  //I set this because the scrollbar was over the page
 		createTextLayout();
 
 		final Div footer = new Div();
@@ -70,8 +70,7 @@ public class ApplicationLayout extends VerticalLayout {
 		content.setClassName("content");
 		content.getStyle().set("display", "flex");
 		content.getStyle().set("flex-wrap", "wrap");   // To stop the children elements to shrinking, instead of it will put them on a new line
-		content.getStyle().set("overflow-y", "auto");
-		
+		content.getStyle().set("overflow-y", "auto");  //This set scrollbar only into content class
 		content.getStyle().set("alignContent", "start");
 		for (int i = 0; i < 60; i++) {
 			content.add(createBlock());
@@ -79,7 +78,6 @@ public class ApplicationLayout extends VerticalLayout {
 		layout.add(navigation, content);
 		layout.expand(content);            //Hard to explain it just fills the content
 		layout.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
-	
 	}
 	/**
 	 * Ignore this method for now.
