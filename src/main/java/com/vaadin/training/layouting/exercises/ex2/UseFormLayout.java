@@ -51,7 +51,8 @@ public class UseFormLayout extends VerticalLayout {
         Password.setAlignItems(Alignment.CENTER);
         formLayout.addFormItem(Password, "Password");
 
-        formLayout.getElement().appendChild(ElementFactory.createBr());
+        formLayout.getElement().appendChild(ElementFactory.createBr());    
+
 
         PasswordField passwordRepeat = new PasswordField();
         passwordRepeat.setWidth("100%");

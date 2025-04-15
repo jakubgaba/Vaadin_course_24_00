@@ -1,8 +1,24 @@
 package com.vaadin.training.layouting.exercises.ex3;
 
+import com.vaadin.flow.component.board.Board;
 import com.vaadin.flow.component.charts.Chart;
-import com.vaadin.flow.component.charts.model.*;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.charts.model.ChartType;
+import com.vaadin.flow.component.charts.model.Configuration;
+import com.vaadin.flow.component.charts.model.Cursor;
+import com.vaadin.flow.component.charts.model.DataLabels;
+import com.vaadin.flow.component.charts.model.DataLabelsFunnel;
+import com.vaadin.flow.component.charts.model.DataSeries;
+import com.vaadin.flow.component.charts.model.DataSeriesItem;
+import com.vaadin.flow.component.charts.model.HorizontalAlign;
+import com.vaadin.flow.component.charts.model.LayoutDirection;
+import com.vaadin.flow.component.charts.model.Legend;
+import com.vaadin.flow.component.charts.model.ListSeries;
+import com.vaadin.flow.component.charts.model.PlotOptionsColumn;
+import com.vaadin.flow.component.charts.model.PlotOptionsFunnel;
+import com.vaadin.flow.component.charts.model.PlotOptionsPie;
+import com.vaadin.flow.component.charts.model.VerticalAlign;
+import com.vaadin.flow.component.charts.model.XAxis;
+import com.vaadin.flow.component.charts.model.YAxis;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.training.layouting.exercises.MainLayout;
@@ -14,9 +30,10 @@ public class UseVaadinBoard extends VerticalLayout {
 
     public UseVaadinBoard(){
         setSizeFull();
-        Div div = new Div();
-        div.setText("Replace me with a vaadin board");
-        add(div);
+        Board board = new Board();
+        board.add(getPieChart(),getPieChart());
+        board.add(getColumnChart());
+        add(board);
     }
 
     private Chart getColumnChart(){
